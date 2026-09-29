@@ -6,7 +6,7 @@
 |---|---|
 | **Mini Project** | Product Manager: Apotek Arcana |
 | **Mata Kuliah** | Pemrograman Web, Pertemuan 3 (Integrasi PHP, MySQL & UI Styling) |
-| **Nama / NIM** | _(isi nama dan NIM)_ |
+| **Nama / NIM** | _DINDA ANGGIA PUTRI (250180001)_ |
 | **Tema** | Toko apotek fantasi: "produk" = ramuan, gulungan, relik, dan bahan langka; harga dalam Rupiah |
 | **Fokus** | CRUD, validasi server-side, PDO prepared statement, anti-XSS, anti-CSRF, pola PRG |
 | **Teknologi** | PHP 8.1+, MySQL/MariaDB, HTML5, CSS3 (Box Model + Flexbox), tanpa framework |
