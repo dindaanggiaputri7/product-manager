@@ -1,0 +1,167 @@
+/* public/assets/style.css — Apotek Arcana
+   Tema terang yang bersih. Box Model + Flexbox, tanpa library eksternal. */
+
+/* Box Model: width sudah termasuk padding + border */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #f8f8fb;
+  --surface: #ffffff;
+  --ink: #1f2140;
+  --muted: #6b6f8a;
+  --line: #e7e8f0;
+  --accent: #5b4bc4;          /* satu warna utama: ungu arcana */
+  --accent-dark: #4a3bb0;
+  --accent-soft: #efedfb;
+  --gold: #b7791f;            /* aksen untuk harga */
+  --danger: #c93a52;
+  --danger-soft: #fdecef;
+  --ok: #1f7a4d;
+  --ok-soft: #e8f6ee;
+  --warn: #a15c07;
+  --warn-soft: #fdf3e2;
+  --shadow: 0 1px 2px rgba(31, 33, 64, .05), 0 6px 20px rgba(31, 33, 64, .06);
+}
+
+body {
+  margin: 0; min-height: 100vh;
+  display: flex; flex-direction: column;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.5; color: var(--ink); background: var(--bg);
+}
+h1 { margin: 0; font-size: 1.7rem; letter-spacing: -.02em; }
+h3 { margin: 0 0 2px; font-size: 1.05rem; word-break: break-word; }
+.muted { margin: 4px 0 0; color: var(--muted); }
+
+.wrap { width: 100%; max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+.main { flex: 1; padding-top: 28px; padding-bottom: 36px; }
+
+/* ---------- Top bar ---------- */
+.topbar { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.topbar__inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.logo .flask { width: 38px; height: 38px; }
+.logo__text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo__text b { font-size: 1.05rem; }
+.logo__text small { color: var(--muted); font-size: .72rem; }
+.topnav { display: flex; align-items: center; gap: 8px; }
+.topnav__link { padding: 8px 12px; border-radius: 8px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: .92rem; }
+.topnav__link:hover, .topnav__link.is-active { color: var(--accent); background: var(--accent-soft); }
+
+/* ---------- Judul + pencarian ---------- */
+.head { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+.search { display: flex; gap: 8px; flex: 1 1 300px; max-width: 420px; }
+.search input { flex: 1; }
+
+/* ---------- Ringkasan ---------- */
+.summary { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.summary__item {
+  flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px;
+  padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+}
+.summary__item span { color: var(--muted); font-size: .78rem; font-weight: 600; }
+.summary__item b { font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+.summary__item small { color: var(--muted); font-size: .78rem; }
+.summary__item--warn { background: var(--warn-soft); border-color: #f3dcae; }
+.summary__item--warn b { color: var(--warn); }
+
+/* ---------- Chip kategori ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.chip {
+  --h: 262;
+  display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  text-decoration: none; font-size: .87rem; font-weight: 600;
+}
+.chip small { color: var(--muted); font-weight: 700; }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: hsl(var(--h) 60% 55%); }
+.chip:hover { border-color: var(--accent); }
+.chip.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip.is-active small { color: #ddd8fb; }
+.chip.is-active .dot { background: #fff; }
+
+/* ---------- Card & grid ---------- */
+.card { margin: 0; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+
+.products { display: flex; flex-wrap: wrap; gap: 18px; align-items: stretch; }
+.product {
+  --h: 262;
+  flex: 0 0 100%;             /* 1 kolom di layar sempit; lihat @media di bawah */
+  display: flex; flex-direction: column; padding: 0; overflow: hidden;
+  box-shadow: var(--shadow); transition: transform .18s, border-color .18s;
+}
+.product:hover { transform: translateY(-3px); border-color: hsl(var(--h) 45% 75%); }
+
+.product__art {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  padding: 12px; background: hsl(var(--h) 60% 96%);
+}
+.product__art .flask { align-self: center; margin-bottom: 4px; }
+.badge {
+  padding: 3px 11px; border-radius: 999px;
+  background: #fff; color: hsl(var(--h) 45% 32%); border: 1px solid hsl(var(--h) 45% 88%);
+  font-size: .73rem; font-weight: 700;
+}
+.product__body { flex: 1; display: flex; flex-direction: column; padding: 16px 18px 18px; }
+.price { margin: 0 0 12px; font-size: 1.15rem; font-weight: 800; color: var(--gold); font-variant-numeric: tabular-nums; }
+
+.meter { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.meter span { display: block; height: 100%; border-radius: 999px; }
+.meter--ok span { background: var(--accent); }
+.meter--low span { background: #e0a030; }
+.meter--out span { background: var(--danger); }
+.stock { margin: 6px 0 0; font-size: .85rem; color: var(--muted); }
+.stock--low { color: var(--warn); font-weight: 700; }
+.stock--out { color: var(--danger); font-weight: 700; }
+.product .actions { margin-top: auto; padding-top: 16px; }
+
+/* ---------- Tombol ---------- */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.actions form { margin: 0; }
+.btn {
+  display: inline-block; cursor: pointer; text-decoration: none;
+  padding: 9px 16px; border-radius: 10px; border: 1px solid transparent;
+  font: inherit; font-size: .9rem; font-weight: 700; white-space: nowrap; transition: background .15s, transform .1s;
+}
+.btn:active { transform: scale(.97); }
+.btn--primary { background: var(--accent); color: #fff; }
+.btn--primary:hover { background: var(--accent-dark); }
+.btn--ghost { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn--danger { background: var(--danger-soft); color: var(--danger); }
+.btn--danger:hover { background: var(--danger); color: #fff; }
+
+/* ---------- Form ---------- */
+.page-head { margin-bottom: 20px; }
+.form { max-width: 620px; padding: 26px; box-shadow: var(--shadow); }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; flex: 1; }
+.field-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.field-row .field { flex: 1 1 200px; }
+label { font-weight: 700; font-size: .88rem; }
+input {
+  width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px;
+  background: #fff; color: var(--ink); font: inherit; font-size: .97rem;
+}
+input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+input.is-invalid { border-color: var(--danger); background: #fffafb; }
+.error { color: var(--danger); font-size: .84rem; font-weight: 600; }
+
+/* ---------- Alert & kosong ---------- */
+.alert { padding: 12px 16px; margin-bottom: 20px; border-radius: 12px; font-weight: 700; border: 1px solid transparent; }
+.alert--ok { background: var(--ok-soft); color: var(--ok); border-color: #bfe5cf; }
+.alert--error { background: var(--danger-soft); color: var(--danger); border-color: #f4c3cc; }
+.empty { text-align: center; color: var(--muted); padding: 40px 20px; }
+
+.footer { padding: 20px 0; text-align: center; font-size: .8rem; color: var(--muted); }
+
+/* ---------- Kolom card bertambah sesuai lebar layar ---------- */
+@media (min-width: 560px) { .product { flex-basis: calc(50% - 9px); } }        /* 2 kolom */
+@media (min-width: 840px) { .product { flex-basis: calc(33.333% - 12px); } }   /* 3 kolom */
+
+/* ---------- Layar sempit ---------- */
+@media (max-width: 600px) {
+  h1 { font-size: 1.4rem; }
+  .search { max-width: none; }
+  .logo__text small { display: none; }
+  .topnav__link { display: none; }   /* ruang navbar dipakai tombol Tambah */
+}
