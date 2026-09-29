@@ -330,9 +330,3 @@ Skenario di bawah mengikuti **checklist demo** pada ketentuan tugas dan ditambah
 **Total: ⬜ / 13 skenario lulus** _(perbarui setelah pengujian)_
 
 ---
-
-## 💭 Refleksi
-
-**Di bagian mana aplikasi paling rentan: input, query, output, atau alur request?**
-
-> _(Tulis dengan bahasamu sendiri. Contoh arah jawaban: bagian paling rentan adalah **input**, karena semua data dari pengguna tidak bisa dipercaya. Kontrol yang diterapkan: validasi server-side dan normalisasi (input); PDO prepared statement (query); `htmlspecialchars` (output); token CSRF, POST untuk delete, dan PRG (alur request).)_
